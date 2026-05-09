@@ -18,7 +18,7 @@ void main() {
             .withDirections(SEARCH_DIRECTIONS)
             .withStepCount(STEP_COUNT_IN_SEARCH)
             .identifyClusters()
-            .max(Comparator.comparingDouble(Cluster::product))
+            .max(Comparator.comparingDouble(Cluster::calculateProduct))
             .orElseThrow(() -> new RuntimeException("Could not find cluster"));
 
 
@@ -31,7 +31,7 @@ void main() {
             .toList();
 
     IO.println(String.format("The maximum cluster holds the product of %.0f in direction %s with the indices %s",
-            maxCluster.product(), maxCluster.direction(), indices));
+            maxCluster.calculateProduct(), maxCluster.direction(), indices));
 }
 
 private Optional<List<String>> readLines(Path path) {
